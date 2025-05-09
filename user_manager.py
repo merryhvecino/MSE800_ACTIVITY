@@ -3,14 +3,14 @@ from database import get_connection
 def add_user(name, email):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO users (name, email) VALUES (?, ?)", (name, email))
+    cursor.execute()
     conn.commit()
     conn.close()
 
 def view_users():
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users")
+    cursor.execute()
     users = cursor.fetchall()
     conn.close()
     return users
@@ -18,7 +18,7 @@ def view_users():
 def search_user(name):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users WHERE name LIKE ?", ('%' + name + '%',))
+    cursor.execute()
     results = cursor.fetchall()
     conn.close()
     return results
@@ -26,14 +26,14 @@ def search_user(name):
 def delete_user(user_id):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
+    cursor.execute()
     conn.commit()
     conn.close()
 
-def advanced_search_user(user_id, name):
+def advanced_search_user(user_id, name):   # ADDED OPTION
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users WHERE id = ? AND name LIKE ?", (user_id, '%' + name + '%'))
+    cursor.execute()
     results = cursor.fetchall()
     conn.close()
     return results
